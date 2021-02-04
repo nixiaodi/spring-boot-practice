@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>spring-boot-redis</module>
+        <module>spring-boot-mybatis</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -25,7 +26,11 @@
         <project.build.resourceEncoding>utf-8</project.build.resourceEncoding>
         <project.report.outputEncoding>utf-8</project.report.outputEncoding>
         <java.version>1.8</java.version>
-        <lettuce.core>5.3.4.RELEASE</lettuce.core>
+        <lettuce-core.version>5.3.4.RELEASE</lettuce-core.version>
+        <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <mysql-connector.version>8.0.20</mysql-connector.version>
+        <mybatis-generator-plugin.version>1.4.0</mybatis-generator-plugin.version>
+        <mybatis.version>3.5.5</mybatis.version>
     </properties>
 
     <dependencies>
@@ -58,12 +63,36 @@
             <dependency>
                 <groupId>io.lettuce</groupId>
                 <artifactId>lettuce-core</artifactId>
-                <version>${lettuce.core}</version>
+                <version>${lettuce-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mybatis.generator</groupId>
+                    <artifactId>mybatis-generator-maven-plugin</artifactId>
+                    <version>${mybatis-generator-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
