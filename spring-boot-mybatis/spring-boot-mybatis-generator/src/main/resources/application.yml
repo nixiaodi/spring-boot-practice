@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/vhr?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: nidi1995230
+    druid:
+      initial-size: 5 # 初始化时建立物理连接的个数
+      max-active: 10  # 最大连接池数量
+      min-idle: 5 # 最小连接池数量
+      max-wait: 6000 # 获取连接时最大等待时间，单位毫秒
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: jiang
+        login-password: nidi1995230
+
+mybatis:
+  mapper-locations: classpath:org/**/mapper/*.xml
+
+logging:
+  level:
+    root: info

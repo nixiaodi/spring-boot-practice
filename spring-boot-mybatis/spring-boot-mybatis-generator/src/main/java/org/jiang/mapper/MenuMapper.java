@@ -4,7 +4,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.jiang.model.Menu;
 import org.jiang.model.MenuExample;
-import org.springframework.data.repository.query.Param;
 
 public interface MenuMapper {
     long countByExample(MenuExample example);
