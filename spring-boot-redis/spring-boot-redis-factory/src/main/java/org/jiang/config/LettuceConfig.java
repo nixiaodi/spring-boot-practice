@@ -1,4 +1,4 @@
-package org.jiang.lettuce;
+package org.jiang.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +16,14 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 @Configuration
 public class LettuceConfig {
 
-    @Bean
+    //@Bean
     public LettuceConnectionFactory redisConnectFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("123.57.66.144", 6379);
         configuration.setPassword("nidi1995230");
         return new LettuceConnectionFactory(configuration);
     }
 
-    @Bean
+    //@Bean
     @Primary
     public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("123.57.66.144", 6379);
@@ -31,7 +31,7 @@ public class LettuceConfig {
         return new JedisConnectionFactory(configuration);
     }
 
-    @Bean
+    //@Bean
     public RedisStandaloneConfiguration redisStandaloneConfiguration() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("123.57.66.144", 6379);
         configuration.setPassword("nidi1995230");
