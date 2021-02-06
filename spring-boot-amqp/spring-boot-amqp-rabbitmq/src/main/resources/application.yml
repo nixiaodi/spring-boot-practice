@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: rabbitmq-provider
+  rabbitmq:
+    host: 123.57.66.144
+    port: 5672
+    username: jiang
+    password: nidi1995230
+    virtual-host: my_vhost
