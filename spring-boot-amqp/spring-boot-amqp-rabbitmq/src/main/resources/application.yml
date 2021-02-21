@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: rabbitmq-provider
@@ -7,3 +10,6 @@ spring:
     username: jiang
     password: nidi1995230
     virtual-host: my_vhost
+    publisher-confirm-type: correlated #确认消息已发送到交换机(Exchange)
+    publisher-returns: true #确认消息已发送到队列(Queue)
+

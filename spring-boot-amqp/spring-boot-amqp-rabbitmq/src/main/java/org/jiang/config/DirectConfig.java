@@ -21,7 +21,7 @@ public class DirectConfig {
 
     @Bean
     public Binding binding() {
-        return BindingBuilder.bind(queue()).to(directExchange()).with("TestRoutingKey");
+        return BindingBuilder.bind(queue()).to(directExchange()).with("TestDirectRouting");
     }
 
     @Bean

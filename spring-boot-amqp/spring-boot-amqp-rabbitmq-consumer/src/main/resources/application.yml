@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: rabbit-consumer
+
+  rabbitmq:
+    host: 123.57.66.144
+    port: 5672
+    username: jiang
+    password: nidi1995230
+    virtual-host: my_vhost
