@@ -13,11 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-amqp-rabbitmq</module>
-<<<<<<< HEAD
         <module>spring-boot-amqp-rabbitmq-consumer</module>
-=======
         <module>spring-amqp-rabbitmq</module>
->>>>>>> a0aa69773a58e714f0988ee47312c307b40b665e
+        <module>spring-amqp-rabbit-template</module>
     </modules>
 
 

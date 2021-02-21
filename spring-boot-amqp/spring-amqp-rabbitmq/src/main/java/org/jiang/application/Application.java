@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * @Description TODO
@@ -15,12 +16,13 @@ import java.util.HashMap;
  * @Create 2021/2/20
  * @Version 1.0
  */
-@ComponentScan
 @Slf4j
 public class Application {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(RabbitConfig.class);
-        RabbitAdmin admin = context.getBean(RabbitAdmin.class);
+        RabbitAdmin rabbitAdmin = context.getBean(RabbitAdmin.class);
+        Properties queueProperties = rabbitAdmin.getQueueProperties("jiang.info");
+        context.close();
 
         // 创建三种类型的Exchange
         //admin.declareExchange(new DirectExchange("jiang.direct.exchange",true,false));
@@ -39,7 +41,7 @@ public class Application {
         //        "jiang.direct.exchange","jiang.test",new HashMap<>()));
 
         // 解绑
-        admin.removeBinding(BindingBuilder.bind(new Queue("jiang.debug")).to(new DirectExchange("jiang.direct.exchange")).with("jiang.test"));
+        //admin.removeBinding(BindingBuilder.bind(new Queue("jiang.debug")).to(new DirectExchange("jiang.direct.exchange")).with("jiang.test"));
 
     }
 }
