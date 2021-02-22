@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @Description TODO
  * @Author jiang
@@ -22,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("org.jiang")
 @Slf4j
 public class RabbitConfig {
+    private int count = 0;
+
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory factory = new CachingConnectionFactory();
@@ -47,14 +51,80 @@ public class RabbitConfig {
         return template;
     }
 
+    //@Bean
+    //public SimpleMessageListenerContainer messageListenerContainer() {
+    //    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+    //    container.setConnectionFactory(connectionFactory());
+    //    //队列可以是多个，参数是String的数组
+    //    container.setQueueNames(RabbitConstant.DEBUG_QUEUE);
+    //    container.setMessageListener((ChannelAwareMessageListener)(message, channel) -> {
+    //        log.info("======接收到的消息=====");
+    //        log.info(message.getMessageProperties().toString());
+    //        log.info(new String(message.getBody()));
+    //    });
+    //    return container;
+    //}
+
+    //@Bean
+    //public SimpleMessageListenerContainer messageListenerContainer() {
+    //    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+    //    container.setConnectionFactory(connectionFactory());
+    //    container.setQueueNames(RabbitConstant.DEBUG_QUEUE,RabbitConstant.INFO_QUEUE);
+    //    container.setMessageListener(message -> {
+    //        log.info("===接收到" + message.getMessageProperties().getConsumerQueue() + "队列的消息");
+    //        log.info(message.getMessageProperties().toString());
+    //        log.info(new String(message.getBody()));
+    //    });
+    //    return container;
+    //}
+
+    //@Bean
+    //public SimpleMessageListenerContainer messageListenerContainer() {
+    //    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+    //    container.setConnectionFactory(connectionFactory());
+    //    container.setQueueNames(RabbitConstant.DEBUG_QUEUE,RabbitConstant.INFO_QUEUE);
+    //    //后置处理器，接收到的消息都添加了Header请求头
+    //    container.setAfterReceivePostProcessors(message -> {
+    //        message.getMessageProperties().getHeaders().put("jiang","hello");
+    //        return message;
+    //    });
+    //    container.setMessageListener(message -> {
+    //        log.info("===接收到" + message.getMessageProperties().getConsumerQueue() + "队列的消息");
+    //        log.info(message.getMessageProperties().toString());
+    //        log.info(new String(message.getBody()));
+    //    });
+    //    return container;
+    //}
+
+    //@Bean
+    //public SimpleMessageListenerContainer messageListenerContainer() {
+    //    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+    //    container.setConnectionFactory(connectionFactory());
+    //    container.setQueueNames(RabbitConstant.DEBUG_QUEUE,RabbitConstant.INFO_QUEUE);
+    //    //设置消费者的consumerTag_tag
+    //    container.setConsumerTagStrategy(queue -> queue + "_" + (++count));
+    //    //设置消费者的Arguments
+    //    ConcurrentHashMap<String,Object> args = new ConcurrentHashMap();
+    //    args.put("module","订单模块");
+    //    args.put("fun","发送消息");
+    //    container.setConsumerArguments(args);
+    //    container.setMessageListener(message -> {
+    //        log.info("===接收到" + message.getMessageProperties().getConsumerQueue() + "队列的消息");
+    //        log.info(message.getMessageProperties().toString());
+    //        log.info(new String(message.getBody()));
+    //    });
+    //    return container;
+    //}
+
     @Bean
     public SimpleMessageListenerContainer messageListenerContainer() {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
-        //队列可以是多个，参数是String的数组
-        container.setQueueNames(RabbitConstant.DEBUG_QUEUE);
-        container.setMessageListener((ChannelAwareMessageListener)(message, channel) -> {
-            log.info("======接收到的消息=====");
+        container.setQueueNames(RabbitConstant.DEBUG_QUEUE,RabbitConstant.INFO_QUEUE);
+        container.setConcurrentConsumers(5);
+        container.setMaxConcurrentConsumers(10);
+        container.setMessageListener(message -> {
+            log.info("===接收到" + message.getMessageProperties().getConsumerQueue() + "队列的消息");
             log.info(message.getMessageProperties().toString());
             log.info(new String(message.getBody()));
         });
