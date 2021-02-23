@@ -10,6 +10,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-mybatis</module>
         <module>spring-boot-amqp</module>
+        <module>spring-practice</module>
     </modules>
     <packaging>pom</packaging>
 
