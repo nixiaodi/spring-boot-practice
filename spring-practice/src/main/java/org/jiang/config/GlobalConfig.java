@@ -2,6 +2,7 @@ package org.jiang.config;
 
 import org.jiang.model.Car;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version 1.0
  */
 @Configuration
+@ComponentScan("org.jiang")
 public class GlobalConfig {
     @Bean
     public Car car() {

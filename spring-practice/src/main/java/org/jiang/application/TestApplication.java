@@ -3,6 +3,7 @@ package org.jiang.application;
 import lombok.extern.slf4j.Slf4j;
 import org.jiang.config.GlobalConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Arrays;
 
