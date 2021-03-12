@@ -1,15 +1,15 @@
 package org.jiang.model;
 
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Description TODO
  * @Author jiang
- * @Create 2021/3/11
+ * @Create 2021/3/12
  * @Version 1.0
  */
-@Data
-public class Flower {
-    private String color;
+@Slf4j
+public class Dog {
     private String name;
+    private String color;
 }

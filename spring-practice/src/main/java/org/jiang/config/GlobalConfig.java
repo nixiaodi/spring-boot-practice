@@ -1,9 +1,8 @@
 package org.jiang.config;
 
 import org.jiang.model.Car;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.jiang.util.TestImportSelector;
+import org.springframework.context.annotation.*;
 
 /**
  * @Description TODO
@@ -13,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("org.jiang")
+//@PropertySource("classpath:test.xml")
+@Import(TestImportSelector.class)
 public class GlobalConfig {
     @Bean
     public Car car() {
