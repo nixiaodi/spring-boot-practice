@@ -2,6 +2,7 @@ package org.jiang.factory;
 
 import org.jiang.model.Flower;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description TODO
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.FactoryBean;
  * @Create 2021/3/11
  * @Version 1.0
  */
+@Component
 public class TestFacoryBean implements FactoryBean {
     @Override
     public Object getObject() throws Exception {
